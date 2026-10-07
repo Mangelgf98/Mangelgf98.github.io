@@ -1,10 +1,18 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio y CV profesional de Miguel Angel González Foronda. Informática, QA, programación, IA local, hardware y 3D.">
   <title>Miguel Angel González Foronda | Informática, QA e IA</title>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch {}
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,6 +25,10 @@
         <a href="#formacion">Formación</a>
         <a href="#habilidades">Habilidades</a>
       </div>
+      <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
+        <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+        <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"></path></svg>
+      </button>
     </nav>
   </header>
 
@@ -34,8 +46,10 @@
         <div class="hero-actions">
           <a class="button primary" href="#experiencia">Ver experiencia</a>
           <a class="button secondary" href="#proyectos">Ver proyectos</a>
+          <a class="button secondary" href="#formacion">Ver formación</a>
         </div>
       </div>
+      <img class="profile-photo" src="assets/miguel-angel.jpeg" alt="Retrato de Miguel Angel González Foronda" width="600" height="800">
     </section>
 
     <section class="section section-muted">
@@ -205,5 +219,17 @@
       <a href="mailto:miguelangel30071998@gmail.com">Contacto</a>
     </div>
   </footer>
+  <script>
+    const themeToggle = document.querySelector(".theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      const theme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = theme;
+      themeToggle.setAttribute("aria-label", `Cambiar a modo ${theme === "dark" ? "claro" : "oscuro"}`);
+      themeToggle.title = `Cambiar a modo ${theme === "dark" ? "claro" : "oscuro"}`;
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {}
+    });
+  </script>
 </body>
 </html>
